@@ -28,8 +28,13 @@ game = Game()
 rect_len = game.settings.rect_len
 snake = game.snake
 pygame.init()
+pygame.mixer.init()
+music = pygame.mixer.Sound('./music/Aimer-HoshikuzuVenes.flac')
+music.play(loops=-1)
+
 fpsClock = pygame.time.Clock()
-screen = pygame.display.set_mode((game.settings.width * 15, game.settings.height * 15))
+screen = pygame.display.set_mode(
+    (game.settings.width * 15, game.settings.height * 15))
 pygame.display.set_caption('Gluttonous')
 
 crash_sound = pygame.mixer.Sound('./sound/crash.wav')
@@ -74,7 +79,8 @@ def quitgame():
 
 def crash():
     pygame.mixer.Sound.play(crash_sound)
-    message_display('crashed', game.settings.width / 2 * 15, game.settings.height / 3 * 15, white)
+    message_display('crashed', game.settings.width / 2 * 15,
+                    game.settings.height / 3 * 15, white)
     time.sleep(1)
 
 
@@ -87,7 +93,8 @@ def initial_interface():
                 pygame.quit()
 
         screen.fill(white)
-        message_display('Gluttonous', game.settings.width / 2 * 15, game.settings.height / 4 * 15)
+        message_display('Gluttonous', game.settings.width /
+                        2 * 15, game.settings.height / 4 * 15)
 
         button('Go!', 80, 240, 80, 40, green, bright_green, game_loop, 'human')
         button('Quit', 270, 240, 80, 40, red, bright_red, quitgame)
