@@ -11,3 +11,6 @@ To start the game
 
 	$ python main.py
 
+## Standup 1-1
+- Soundtrack Included
+- Snake Teleportation Partially Implemented
