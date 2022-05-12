@@ -18,3 +18,7 @@ To start the game
 
 ## References
 <https://www.pygame.org/docs/ref/mixer.html>
+
+## Standup 1-1
+- Soundtrack Included
+- Snake Teleportation Partially Implemented
