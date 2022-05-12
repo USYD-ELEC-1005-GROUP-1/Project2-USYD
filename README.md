@@ -7,6 +7,10 @@ You will need to modify this code to complete your Project 2 assignment.
 - pygame
 
 ## Usage
+To install dependencies
+
+	$ pip install -r requirements.txt
+
 To start the game
 
 	$ python main.py
