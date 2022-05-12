@@ -167,15 +167,23 @@ class Game:
                 
         if self.game_end():
             return -1
+
+#teleport snake to other side of canvas
+#currently head teleports, but other pieces cause game to end 
+        if self.snake.position[0] == self.settings.width:
+            self.snake.position[0] = 0
+        
+        if self.snake.position[1] == self.settings.height:
+            self.snake.position [1] = 0
                     
         return reward
     
     def game_end(self):
         end = False
-        if self.snake.position[0] >= self.settings.width or self.snake.position[0] < 0:
-            end = True
-        if self.snake.position[1] >= self.settings.height or self.snake.position[1] < 0:
-            end = True
+        #if self.snake.position[0] >= self.settings.width or self.snake.position[0] < 0:
+            #end = True
+        #if self.snake.position[1] >= self.settings.height or self.snake.position[1] < 0:
+            #end = True
         if self.snake.segments[0] in self.snake.segments[1:]:
             end = True
 

@@ -11,5 +11,3 @@ To start the game
 
 	$ python main.py
 
-## References
-<https://www.pygame.org/docs/ref/mixer.html>
