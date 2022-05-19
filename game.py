@@ -6,11 +6,12 @@ Created on Wed Apr 25 15:19:25 2018
 """
 import pygame, random
 import numpy as np
+import sqlite3
 
 class Settings:
     def __init__(self):
-        self.width = 28
-        self.height = 28
+        self.width = 56
+        self.height = 56
         self.rect_len = 15
 
 class Snake:
@@ -193,4 +194,22 @@ class Game:
         font = pygame.font.SysFont(None, 25)
         text = font.render('Score: ' + str(self.snake.score), True, color)
         screen.blit(text, (0, 0))
+
+class SaveToDatabase:
+    def __init__(self) -> None:
+        self.db = sqlite3.connect('snake_db.db')
+        self.cursor = self.db.cursor()
+        self.cursor.execute('CREATE TABLE IF NOT EXISTS snake_scores (score INTEGER)')
+        self.db.commit()
+
+    def save_score(self, score):
+        self.cursor.execute('INSERT INTO snake_scores VALUES (?)', (score,))
+        self.db.commit()
+
+    def get_scores(self):
+        self.cursor.execute('SELECT * FROM snake_scores')
+        return self.cursor.fetchall()
+
+    def close(self):
+        self.db.close()
 

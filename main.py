@@ -45,12 +45,12 @@ def text_objects(text, font, color=black):
     return text_surface, text_surface.get_rect()
 
 
-def message_display(text, x, y, color=black):
+def message_display(text, x, y, color=white):
     large_text = pygame.font.SysFont('comicsansms', 50)
     text_surf, text_rect = text_objects(text, large_text, color)
     text_rect.center = (x, y)
     screen.blit(text_surf, text_rect)
-    pygame.display.update()
+    # pygame.display.update()
 
 
 def button(msg, x, y, w, h, inactive_color, active_color, action=None, parameter=None):
@@ -92,12 +92,16 @@ def initial_interface():
             if event.type == pygame.QUIT:
                 pygame.quit()
 
+        bg = pygame.image.load('./images/Background Images/python.jpg').convert()
+        bg = pygame.transform.scale(bg, (game.settings.width * 15, game.settings.height * 15))
+
         screen.fill(white)
+        screen.blit(bg, (0, 0))
         message_display('Gluttonous', game.settings.width /
                         2 * 15, game.settings.height / 4 * 15)
 
-        button('Go!', 80, 240, 80, 40, green, bright_green, game_loop, 'human')
-        button('Quit', 270, 240, 80, 40, red, bright_red, quitgame)
+        button('Go!', 350, 400, 250, 40, green, bright_green, game_loop, 'human')
+        button('Quit', 270, 400, 80, 40, red, bright_red, quitgame)
 
         pygame.display.update()
         pygame.time.Clock().tick(15)

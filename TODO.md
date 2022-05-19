@@ -4,7 +4,7 @@
 2. [ ] get abilities when get items
 3. [ ] notification sounds when items collected
 4. [ ] minus score item
-5. [ ] background image for the initial page
+5. [x] background image for the initial page
 6. [ ] allow player to mute all the background music
 7. [ ] display a page to show the score for the game
 8. [ ] score storage
