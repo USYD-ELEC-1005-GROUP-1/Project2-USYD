@@ -2,7 +2,7 @@
 
 1. [ ] Change appearance when get different items
 2. [ ] get abilities when get items
-3. [ ] notification sounds when items collected
+3. [x] notification sounds when items collected
 4. [ ] minus score item
 5. [x] background image for the initial page
 6. [x] allow player to mute all the background music

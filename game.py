@@ -83,7 +83,6 @@ class Snake:
 class Strawberry():
     def __init__(self, settings):
         self.settings = settings
-        
         self.style = str(random.randint(1, 8))
         self.image = pygame.image.load('images/food' + str(self.style) + '.bmp')        
         self.initialize()
@@ -162,6 +161,7 @@ class Game:
             self.strawberry.random_pos(self.snake)
             reward = 1
             self.snake.score += 1
+            pygame.mixer.Sound('./sound/bingo.mp3').play()
         else:
             self.snake.segments.pop()
             reward = 0
