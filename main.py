@@ -9,7 +9,7 @@ import pygame
 import time
 from pygame.locals import KEYDOWN, K_RIGHT, K_LEFT, K_UP, K_DOWN, K_ESCAPE
 from pygame.locals import QUIT
-
+from game import SaveToDatabase
 from game import Game
 
 black = pygame.Color(0, 0, 0)
@@ -128,7 +128,9 @@ def game_loop(player, fps=10):
         pygame.display.flip()
 
         fpsClock.tick(fps)
-
+    SaveGame = SaveToDatabase()
+    SaveGame.save_score(game.get_score())
+    SaveGame.close()
     crash()
 
 

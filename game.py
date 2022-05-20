@@ -195,6 +195,8 @@ class Game:
         text = font.render('Score: ' + str(self.snake.score), True, color)
         screen.blit(text, (0, 0))
 
+    def get_score(self):
+        return self.snake.score
 class SaveToDatabase:
     def __init__(self) -> None:
         self.db = sqlite3.connect('snake_db.db')
