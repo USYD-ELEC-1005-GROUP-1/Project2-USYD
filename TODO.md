@@ -5,7 +5,7 @@
 3. [ ] notification sounds when items collected
 4. [ ] minus score item
 5. [x] background image for the initial page
-6. [ ] allow player to mute all the background music
+6. [x] allow player to mute all the background music
 7. [ ] display a page to show the score for the game
 8. [x] score storage
 9. [x] add background music

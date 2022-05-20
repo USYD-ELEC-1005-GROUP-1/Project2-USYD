@@ -52,6 +52,8 @@ def message_display(text, x, y, color=white):
     screen.blit(text_surf, text_rect)
     # pygame.display.update()
 
+def stop_music(music: pygame.mixer.Sound):
+    music.stop()
 
 def button(msg, x, y, w, h, inactive_color, active_color, action=None, parameter=None):
     mouse = pygame.mouse.get_pos()
@@ -102,6 +104,8 @@ def initial_interface():
 
         button('Go!', 350, 400, 250, 40, green, bright_green, game_loop, 'human')
         button('Quit', 270, 400, 80, 40, red, bright_red, quitgame)
+
+        button('Mute music', game.settings.width * 15 - 120, 20, 100, 40, yellow, bright_yellow, stop_music, music)
 
         pygame.display.update()
         pygame.time.Clock().tick(15)
