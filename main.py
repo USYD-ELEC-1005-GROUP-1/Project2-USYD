@@ -86,6 +86,33 @@ def crash():
     time.sleep(1)
 
 
+def ranking_interface():
+    viewing = True
+    while viewing:
+
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+        
+        bg = pygame.image.load('./images/Background Images/python.jpg').convert()
+        bg = pygame.transform.scale(bg, (game.settings.width * 15, game.settings.height * 15))
+        screen.fill(white)
+        screen.blit(bg, (0, 0))
+        message_display('Ranking', game.settings.width /
+                        2 * 15, game.settings.height / 4 * 15)
+        SaveGame = SaveToDatabase()
+        scores = SaveGame.get_scores()
+        scores.sort(reverse=True)
+        SaveGame.close()
+        for i in range(len(scores)):
+            message_display(str(i + 1) + '.' + str(scores[i]), game.settings.width /
+                            2 * 15, game.settings.height / 4 * 15 + i * 60 + 100, white)
+        # button('Quit', 380, 400, 80, 40, red, bright_red, quitgame)
+        button('Back', 270, 490, 80, 40, red, bright_red, initial_interface)
+        pygame.display.update()
+        pygame.time.Clock().tick(20)
+
+
 def initial_interface():
     intro = True
     while intro:
@@ -107,6 +134,8 @@ def initial_interface():
 
         button('Mute music', game.settings.width * 15 - 120, 20, 100, 40, yellow, bright_yellow, stop_music, music)
 
+        button('Ranking', game.settings.width /
+                2 * 15, game.settings.height / 4 * 15 + 100, 250, 40, blue, bright_blue, ranking_interface)
         pygame.display.update()
         pygame.time.Clock().tick(15)
 
