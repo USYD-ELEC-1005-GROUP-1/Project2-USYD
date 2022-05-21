@@ -18,7 +18,27 @@ To start the game
 
 ## References
 <https://www.pygame.org/docs/ref/mixer.html>
+<https://pythonprogramming.net/adding-sounds-music-pygame/>
+<https://docs.python.org/3/library/sqlite3.html>
 
-## Standup 1-1
+
+
+## Standups could be viewed through JIRA
+(Since backlog has been messed up, here is the details of the standups)
+
+## Standup (sprint) 1
+
 - Soundtrack Included
 - Snake Teleportation Partially Implemented
+
+## Standup (sprint) 2
+
+- Planned each developer doing another 4 issues
+- Tests for Standup 1 passed.
+- Planned to finish the project one day before the deadline.
+
+## Standup (sprint) 3
+
+- Done adding background image
+- Robert planned to finish as much features as possible, by Friday.
+  
