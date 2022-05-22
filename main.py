@@ -28,6 +28,8 @@ game = Game()
 rect_len = game.settings.rect_len
 snake = game.snake
 pygame.init()
+
+# Adding background music
 pygame.mixer.init()
 music = pygame.mixer.Sound('./music/Aimer-HoshikuzuVenes.flac')
 music.play(loops=-1)
@@ -86,6 +88,7 @@ def crash():
     time.sleep(1)
 
 
+# A page to show the ranking
 def ranking_interface():
     viewing = True
     while viewing:
@@ -94,12 +97,17 @@ def ranking_interface():
             if event.type == pygame.QUIT:
                 pygame.quit()
         
+        # add background image
         bg = pygame.image.load('./images/Background Images/python.jpg').convert()
         bg = pygame.transform.scale(bg, (game.settings.width * 15, game.settings.height * 15))
         screen.fill(white)
         screen.blit(bg, (0, 0))
+
+        # add ranking button
         message_display('Ranking', game.settings.width /
                         2 * 15, game.settings.height / 4 * 15)
+        
+        # get scores from database
         SaveGame = SaveToDatabase()
         scores = SaveGame.get_scores()
         scores.sort(reverse=True)
@@ -107,7 +115,6 @@ def ranking_interface():
         for i in range(len(scores)):
             message_display(str(i + 1) + '.' + str(scores[i]), game.settings.width /
                             2 * 15, game.settings.height / 4 * 15 + i * 60 + 100, white)
-        # button('Quit', 380, 400, 80, 40, red, bright_red, quitgame)
         button('Back', 270, 490, 80, 40, red, bright_red, initial_interface)
         pygame.display.update()
         pygame.time.Clock().tick(20)

@@ -168,23 +168,16 @@ class Game:
                 
         if self.game_end():
             return -1
-
-#teleport snake to other side of canvas
-#currently head teleports, but other pieces cause game to end 
-        if self.snake.position[0] == self.settings.width:
-            self.snake.position[0] = 0
-        
-        if self.snake.position[1] == self.settings.height:
-            self.snake.position [1] = 0
                     
         return reward
     
     def game_end(self):
         end = False
-        #if self.snake.position[0] >= self.settings.width or self.snake.position[0] < 0:
-            #end = True
-        #if self.snake.position[1] >= self.settings.height or self.snake.position[1] < 0:
-            #end = True
+        # When snake hits the wall, it dies.
+        if self.snake.position[0] >= self.settings.width or self.snake.position[0] < 0:
+            end = True
+        if self.snake.position[1] >= self.settings.height or self.snake.position[1] < 0:
+            end = True
         if self.snake.segments[0] in self.snake.segments[1:]:
             end = True
 
@@ -197,21 +190,26 @@ class Game:
 
     def get_score(self):
         return self.snake.score
+
 class SaveToDatabase:
     def __init__(self) -> None:
+        # Create databases and tables if not exist, and connect to it.
         self.db = sqlite3.connect('snake_db.db')
         self.cursor = self.db.cursor()
         self.cursor.execute('CREATE TABLE IF NOT EXISTS snake_scores (score INTEGER)')
         self.db.commit()
 
+    # Insert score into database.
     def save_score(self, score):
         self.cursor.execute('INSERT INTO snake_scores VALUES (?)', (score,))
         self.db.commit()
 
+    # Get the top 10 scores.
     def get_scores(self):
-        self.cursor.execute('SELECT * FROM snake_scores')
+        self.cursor.execute('SELECT * FROM snake_scores ORDER BY score DESC LIMIT 10')
         return self.cursor.fetchall()
 
+    # Close database.
     def close(self):
         self.db.close()
 
